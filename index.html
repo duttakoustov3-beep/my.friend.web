@@ -1,0 +1,3592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>∞ Our Memories</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#030305;
+    color:#f5f3f7;
+    font-family:"Manrope",sans-serif;
+    overflow-x:hidden;
+}
+
+::selection{
+    background:white;
+    color:black;
+}
+
+
+/* =====================================================
+   BACKGROUND AURORA
+===================================================== */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.12;
+
+    pointer-events:none;
+
+    z-index:-5;
+}
+
+body::before{
+
+    background:#8b5cf6;
+
+    top:-300px;
+    left:-250px;
+
+    animation:auroraOne 15s infinite alternate ease-in-out;
+}
+
+body::after{
+
+    background:#ec4899;
+
+    right:-300px;
+    bottom:-300px;
+
+    animation:auroraTwo 18s infinite alternate ease-in-out;
+}
+
+
+@keyframes auroraOne{
+
+    to{
+        transform:translate(300px,250px) scale(1.2);
+    }
+
+}
+
+@keyframes auroraTwo{
+
+    to{
+        transform:translate(-250px,-200px) scale(1.3);
+    }
+
+}
+
+
+/* =====================================================
+   NOISE
+===================================================== */
+
+.noise{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    opacity:.025;
+
+    background-image:url(
+    "data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
+    );
+
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+#stars{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+}
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    background:white;
+
+    border-radius:50%;
+
+    opacity:.5;
+
+    animation:twinkle 3s infinite alternate;
+
+}
+
+
+@keyframes twinkle{
+
+    from{
+        opacity:.1;
+    }
+
+    to{
+        opacity:.8;
+    }
+
+}
+
+
+/* =====================================================
+   FALLING HEARTS
+===================================================== */
+
+#hearts{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:999;
+
+}
+
+
+.heart{
+
+    position:absolute;
+
+    top:-50px;
+
+    animation:heartFall linear forwards;
+
+    opacity:.8;
+
+    user-select:none;
+
+    filter:drop-shadow(
+        0 0 8px rgba(255,120,180,.5)
+    );
+
+}
+
+
+@keyframes heartFall{
+
+    0%{
+
+        transform:
+        translateY(-50px)
+        translateX(0)
+        rotate(0deg);
+
+        opacity:0;
+
+    }
+
+    10%{
+
+        opacity:.9;
+
+    }
+
+    50%{
+
+        transform:
+        translateY(50vh)
+        translateX(35px)
+        rotate(180deg);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(110vh)
+        translateX(-40px)
+        rotate(360deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+#loader{
+    position:fixed; inset:0;
+    background:radial-gradient(circle at 50% 45%,rgba(160,110,210,.10),transparent 35%),#030305;
+    z-index:10000; display:flex; align-items:center; justify-content:center;
+    opacity:1; visibility:visible; transition:opacity .85s ease,visibility .85s ease;
+}
+.loader-inner{width:min(330px,80vw);text-align:center;}
+.loader-label{font-size:9px;letter-spacing:8px;color:#888;margin-bottom:12px;animation:loaderLabel 1.4s ease-in-out infinite alternate;}
+.loader-count{font-family:"Cormorant Garamond",serif;font-size:82px;line-height:.9;font-weight:300;margin:12px 0 18px;color:#f8f4fb;text-shadow:0 0 25px rgba(220,180,255,.18);}
+.loader-bar{width:100%;height:1px;background:#222;overflow:hidden;margin:auto;}
+.loader-progress{height:100%;width:0%;background:linear-gradient(90deg,#8d6aa8,#ffffff,#d9b9f1);box-shadow:0 0 12px rgba(220,190,255,.45);}
+.loader-subtitle{margin-top:18px;font-size:8px;letter-spacing:4px;color:#555;}
+@keyframes loaderLabel{from{opacity:.45;letter-spacing:7px;}to{opacity:1;letter-spacing:9px;}}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+
+    position:fixed;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:1000;
+
+    width:min(850px,90%);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:10px 14px 10px 20px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(5,5,8,.55);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:100px;
+
+}
+
+
+.logo{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:28px;
+
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+
+.nav-links a{
+
+    color:#777;
+
+    text-decoration:none;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    transition:.3s;
+
+}
+
+
+.nav-links a:hover{
+
+    color:white;
+
+}
+
+
+.music{
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    border:1px solid #333;
+
+    background:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.music:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+
+.hero-inner{
+
+    max-width:1100px;
+
+    padding:30px;
+
+}
+
+
+.hero-small{
+
+    font-size:9px;
+
+    letter-spacing:9px;
+
+    color:#777;
+
+    margin-bottom:45px;
+
+}
+
+
+.hero-title{
+    font-family:"Cormorant Garamond", serif;
+
+    font-size:clamp(85px, 14vw, 180px);
+
+    line-height:.75;
+
+    font-weight:300;
+
+    letter-spacing:-5px;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.25),
+        0 0 30px rgba(210,170,240,.25),
+        0 0 60px rgba(180,130,220,.12);
+
+    animation:welcomeGlow 3s ease-in-out infinite alternate;
+}
+@keyframes welcomeGlow{
+
+    from{
+        text-shadow:
+            0 0 10px rgba(255,255,255,.20),
+            0 0 25px rgba(210,170,240,.20);
+    }
+
+    to{
+        text-shadow:
+            0 0 15px rgba(255,255,255,.45),
+            0 0 35px rgba(210,170,240,.40),
+            0 0 70px rgba(180,130,220,.20);
+    }
+
+}
+.hero-description{
+
+    max-width:550px;
+
+    margin:60px auto 0;
+
+    font-size:13px;
+
+    line-height:2;
+
+    color:#777;
+
+}
+
+
+.hero-scroll{
+
+    position:absolute;
+
+    bottom:35px;
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+    color:#555;
+
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.section{
+
+    padding:170px 7%;
+
+}
+
+
+.section-inner{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+
+.kicker{
+
+    font-family:"Caveat",cursive;
+
+    font-size:30px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    color:#eadbfa;
+
+    text-shadow:
+    0 0 15px rgba(220,180,255,.35);
+
+}
+
+
+.section-title{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:clamp(60px,8vw,110px);
+
+    font-weight:300;
+
+    line-height:.85;
+
+    margin-top:18px;
+
+}
+
+
+.section-description{
+
+    max-width:600px;
+
+    margin-top:30px;
+
+    color:#999;
+
+    line-height:2;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   FIRST FEATURE
+===================================================== */
+
+.feature{
+
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:80px;
+
+    align-items:center;
+
+    margin-top:100px;
+
+}
+
+
+.feature-photo{
+    width:100%;
+    aspect-ratio:16 / 9;
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    background:#111;
+}
+
+
+.feature-photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:1.2s;
+
+}
+.photo video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.feature-photo:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+.photo-tag{
+
+    position:absolute;
+
+    top:25px;
+
+    left:25px;
+
+    padding:9px 13px;
+
+    background:rgba(0,0,0,.5);
+
+    backdrop-filter:blur(10px);
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+}
+
+
+.feature-text{
+
+    padding:30px 10px;
+
+}
+
+
+.date{
+
+    font-size:12px;
+
+    letter-spacing:5px;
+
+    color:#f1ddff;
+
+    font-weight:600;
+
+    text-shadow:
+    0 0 12px rgba(220,180,255,.6);
+
+}
+
+
+.feature-text h3{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:400;
+
+    font-size:64px;
+
+    line-height:.95;
+
+    margin:25px 0;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 20px rgba(255,255,255,.18);
+
+    letter-spacing:-1px;
+
+}
+
+
+.feature-text p{
+
+    color:#bdb8c5;
+
+    line-height:2;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================================
+   MEMORY WALL
+===================================================== */
+
+.memory-wall{
+
+    margin-top:100px;
+
+    display:grid;
+
+    grid-template-columns:repeat(12,minmax(0,1fr));
+
+    gap:14px;
+
+}
+
+
+.memory{
+
+    position:relative;
+
+    min-width:0;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    background:#111;
+
+    min-height:330px;
+
+}
+
+
+.memory img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:1s;
+
+}
+
+
+.memory:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.memory video{
+
+    width:100%;
+
+    max-width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:1s;
+
+}
+
+
+.memory:hover video{
+
+    transform:scale(1.08);
+
+}
+
+
+.viewer video{
+
+    max-width:92%;
+
+    max-height:88vh;
+
+}
+
+
+.memory:nth-child(1){
+
+    grid-column:span 7;
+
+    height:500px;
+
+}
+
+
+.memory:nth-child(2){
+
+    grid-column:span 5;
+
+    height:500px;
+
+}
+
+
+.memory:nth-child(3){
+
+    grid-column:span 4;
+
+    height:400px;
+
+}
+
+
+.memory:nth-child(4){
+
+    grid-column:span 4;
+
+    height:400px;
+
+}
+
+
+.memory:nth-child(5){
+
+    grid-column:span 4;
+
+    height:400px;
+
+}
+
+
+.memory:nth-child(6){
+
+    grid-column:span 5;
+
+    height:500px;
+
+}
+
+
+.memory:nth-child(7){
+
+    grid-column:span 7;
+
+    height:500px;
+
+}
+
+
+/* Remaining photos */
+
+.memory:nth-child(n+8){
+
+    grid-column:span 4;
+
+    height:420px;
+
+}
+
+
+.memory-info{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    padding:25px;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.85)
+    );
+
+}
+
+
+.memory-info span{
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    color:#ccc;
+
+}
+
+
+.memory-info h3{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:30px;
+
+    font-weight:400;
+
+    margin-top:5px;
+
+}
+
+
+/* =====================================================
+   COUNTER
+===================================================== */
+
+.counter{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    border-top:1px solid #19191d;
+
+    border-bottom:1px solid #19191d;
+
+    margin-top:120px;
+
+}
+
+
+.counter-box{
+
+    text-align:center;
+
+    padding:45px;
+
+    border-right:1px solid #19191d;
+
+}
+
+
+.counter-box:last-child{
+
+    border:none;
+
+}
+
+
+.counter-number{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:65px;
+
+    font-weight:300;
+
+}
+
+
+.counter-label{
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    color:#777;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+
+    position:relative;
+
+    max-width:900px;
+
+    margin:100px auto 0;
+
+}
+
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    bottom:0;
+
+    width:1px;
+
+    background:#1c1c20;
+
+}
+
+
+.event{
+
+    width:50%;
+
+    padding:40px 60px;
+
+    position:relative;
+
+}
+
+
+.event:nth-child(even){
+
+    margin-left:50%;
+
+}
+
+
+.event-dot{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#cdb2e7;
+
+    box-shadow:0 0 20px #cdb2e7;
+
+    top:50px;
+
+}
+
+
+.event:nth-child(odd) .event-dot{
+
+    right:-4px;
+
+}
+
+
+.event:nth-child(even) .event-dot{
+
+    left:-4px;
+
+}
+
+
+.event-date{
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    color:#a88bc3;
+
+}
+
+
+.event h3{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:42px;
+
+    font-weight:400;
+
+    margin:12px 0;
+
+}
+
+
+.event p{
+
+    font-size:12px;
+
+    line-height:1.9;
+
+    color:#777;
+
+}
+
+
+/* =====================================================
+   SECRET MEMORY
+===================================================== */
+
+.reveal-card{
+
+    max-width:800px;
+
+    margin:100px auto 0;
+
+    border:1px solid #222;
+
+    padding:70px 40px;
+
+    text-align:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(140,90,190,.08),
+        transparent 60%
+    );
+
+}
+
+
+.reveal-card h3{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:60px;
+
+    font-weight:300;
+
+}
+
+
+.reveal-card p{
+
+    max-width:450px;
+
+    margin:20px auto 35px;
+
+    color:#777;
+
+    line-height:1.8;
+
+}
+
+
+.reveal-button{
+
+    border:1px solid #555;
+
+    background:none;
+
+    color:white;
+
+    padding:15px 30px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+
+.reveal-button:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+.hidden-memory{
+
+    display:none;
+
+    font-family:"Cormorant Garamond";
+
+    font-size:30px;
+
+    color:#d0b3e6;
+
+    margin-top:35px;
+
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter{
+
+    max-width:850px;
+
+    margin:100px auto 0;
+
+    padding:80px;
+
+    border:1px solid #1b1b1e;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.045),
+        rgba(255,255,255,.01)
+    );
+
+}
+
+
+.letter-label{
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+    color:#777;
+
+}
+
+
+.letter h3{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:70px;
+
+    font-weight:300;
+
+    line-height:.9;
+
+    margin:30px 0 45px;
+
+}
+
+
+.letter p{
+
+    font-size:13px;
+
+    line-height:2;
+
+    color:#888;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:50px;
+
+}
+
+
+.final small{
+
+    font-size:8px;
+
+    letter-spacing:7px;
+
+    color:#777;
+
+}
+
+
+.final h2{
+
+    font-family:"Cormorant Garamond";
+
+    font-size:clamp(90px,15vw,190px);
+
+    font-weight:300;
+
+    line-height:.7;
+
+    margin:45px 0;
+
+}
+
+
+.final h2 span{
+
+    font-style:italic;
+
+    color:#cbb2df;
+
+}
+
+
+.final p{
+
+    max-width:500px;
+
+    margin:auto;
+
+    color:#777;
+
+    font-size:12px;
+
+    line-height:2;
+
+}
+
+
+.infinity{
+
+    font-size:30px;
+
+    margin-top:50px;
+
+    color:#bba1d2;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:50px;
+
+    text-align:center;
+
+    border-top:1px solid #151519;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+}
+
+
+/* =====================================================
+   PHOTO VIEWER
+===================================================== */
+
+.viewer{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.96);
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+}
+
+
+.viewer img{
+
+    max-width:92%;
+
+    max-height:88vh;
+
+    object-fit:contain;
+
+}
+
+
+.close{
+
+    position:absolute;
+
+    top:30px;
+
+    right:35px;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    color:#aaa;
+
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:1s;
+
+}
+
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:750px){
+
+    .nav-links{
+        display:none;
+    }
+
+
+    .nav{
+        justify-content:space-between;
+    }
+
+
+.hero-title{
+    font-size:clamp(72px, 22vw, 105px);
+    letter-spacing:-3px;
+    line-height:.8;
+}
+
+
+    .section{
+
+        padding:110px 6%;
+
+    }
+
+
+    .kicker{
+
+        font-size:26px;
+
+    }
+
+
+    .feature{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+    }
+
+
+    .feature-photo{
+
+        height:450px;
+
+    }
+
+
+    .feature-text h3{
+
+        font-size:52px;
+
+        line-height:.95;
+
+    }
+
+
+    .memory-wall{
+
+        display:block;
+
+    }
+
+
+    .memory,
+    .memory:nth-child(n){
+
+        height:380px;
+
+        margin-bottom:12px;
+
+    }
+
+
+    .counter{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .counter-box{
+
+        border-right:none;
+
+        border-bottom:1px solid #19191d;
+
+    }
+
+
+    .timeline::before{
+
+        left:8px;
+
+    }
+
+
+    .event,
+    .event:nth-child(even){
+
+        width:100%;
+
+        margin-left:0;
+
+        padding-left:40px;
+
+    }
+
+
+    .event-dot,
+    .event:nth-child(odd) .event-dot,
+    .event:nth-child(even) .event-dot{
+
+        left:4px;
+
+        right:auto;
+
+    }
+
+
+    .letter{
+
+        padding:40px 25px;
+
+    }
+
+
+    .letter h3{
+
+        font-size:55px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+/* =========================================
+   MEMORY LOGIN
+========================================= */
+
+#login-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99998;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(180,130,220,.12),
+            transparent 40%
+        ),
+        #030305;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+
+.login-box{
+
+    width:min(390px,85vw);
+
+    text-align:center;
+
+    padding:45px 30px;
+
+    border:1px solid #24242a;
+
+    background:rgba(10,10,14,.82);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.5);
+
+}
+
+
+.login-small{
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+    color:#777;
+
+    margin-bottom:18px;
+
+}
+
+
+.login-box h1{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:52px;
+
+    font-weight:300;
+
+    color:white;
+
+    margin:0 0 10px;
+
+    text-shadow:
+        0 0 30px rgba(220,190,240,.25);
+
+}
+
+
+.login-box p{
+
+    color:#777;
+
+    font-size:11px;
+
+    margin-bottom:30px;
+
+}
+
+
+#memory-password{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:16px;
+
+    background:#08080b;
+
+    border:1px solid #29292f;
+
+    outline:none;
+
+    color:white;
+
+    text-align:center;
+
+    font-family:"Manrope",sans-serif;
+
+    letter-spacing:3px;
+
+    font-size:13px;
+
+    transition:.3s;
+
+}
+
+
+#memory-password:focus{
+
+    border-color:#a98ac1;
+
+    box-shadow:
+        0 0 25px rgba(180,140,220,.12);
+
+}
+
+
+#login-button{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border:0;
+
+    background:white;
+
+    color:#050505;
+
+    cursor:pointer;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    font-family:"Manrope",sans-serif;
+
+    transition:.3s;
+
+}
+
+
+#login-button:hover{
+
+    background:#dfc9ea;
+
+    transform:translateY(-2px);
+
+}
+
+
+#login-button:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+#login-message{
+
+    min-height:20px;
+
+    margin-top:18px;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    color:#bda3ca;
+
+}
+
+
+@media(max-width:750px){
+
+    .login-box{
+
+        padding:35px 22px;
+
+    }
+
+    .login-box h1{
+
+        font-size:44px;
+
+    }
+
+}
+</style>
+
+</head>
+
+
+<body>
+<!-- LOGIN SCREEN -->
+
+<div id="login-screen">
+
+    <div class="login-box">
+
+        <div class="login-small">
+            PRIVATE MEMORY ARCHIVE
+        </div>
+
+        <h1>
+            Welcome Back
+        </h1>
+
+        <p>
+            Enter your memory password
+        </p>
+
+        <input
+            type="password"
+            id="memory-password"
+            placeholder="Enter password"
+            autocomplete="off"
+        >
+
+        <button
+            id="login-button"
+            onclick="checkMemoryPassword()">
+
+            ENTER MEMORIES
+
+        </button>
+
+        <div id="login-message"></div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="noise"></div>
+
+<div id="stars"></div>
+
+<div id="hearts"></div>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div id="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-label">
+            MEMORIES LOADING
+        </div>
+
+        <div class="loader-count" id="count">
+            00
+        </div>
+
+        <div class="loader-bar">
+
+            <div
+            class="loader-progress"
+            id="loaderProgress">
+            </div>
+
+        </div>
+
+        <div class="loader-subtitle">
+            A LITTLE ARCHIVE OF US
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="nav">
+
+    <div class="logo">
+        ∞
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="#home">
+            HOME
+        </a>
+
+        <a href="#collection">
+            MEMORIES
+        </a>
+
+        <a href="#timeline">
+            TIME
+        </a>
+
+        <a href="#letter">
+            WORDS
+        </a>
+
+    </div>
+
+
+    <button
+    class="music"
+    id="musicButton"
+    onclick="toggleMusic()">
+
+        ♪
+
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-inner">
+
+        <div class="hero-small">
+            A PRIVATE COLLECTION OF MOMENTS
+        </div>
+
+
+        <h1 class="hero-title">
+
+            EVERY
+
+            <span class="second">
+                MOMENT
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Some moments pass.
+
+            Some stay.
+
+            And some become the reason
+            we remember an entire chapter
+            of our lives.
+
+        </p>
+
+    </div>
+
+
+    <div class="hero-scroll">
+
+        SCROLL ↓
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FIRST MEMORY
+===================================================== -->
+
+<section class="section reveal">
+
+    <div class="section-inner">
+
+        <div class="kicker">
+            01 / THE FIRST FRAME
+        </div>
+
+
+        <h2 class="section-title">
+
+            Where it<br>
+            all began.
+
+        </h2>
+
+
+        <div class="feature">
+
+
+            <div class="feature-photo">
+
+                <!-- YOUR FIRST PHOTO -->
+
+                <img
+                src="main.jpg"
+                alt="Our Orientation Day">
+
+                <div class="photo-tag">
+                    01 / ORIGINAL
+                </div>
+
+            </div>
+
+
+            <div class="feature-text">
+
+                <div class="date">
+                    02 MAY 2024
+                </div>
+
+
+                <h3>
+
+                    Where it<br>
+                    all began.
+
+                </h3>
+
+
+                <p>
+
+                    We thought it was just an
+                    Orientation Day at Salt Brook
+                    Academy.
+
+                    We didn't know we were stepping
+                    into the beginning of a chapter
+                    filled with friendship, laughter,
+                    countless memories and moments
+                    we would carry with us for a lifetime.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     18 PHOTO COLLECTION
+===================================================== -->
+
+<section
+class="section reveal"
+id="collection">
+
+    <div class="section-inner">
+
+
+        <div class="kicker">
+            02 / THE COLLECTION
+        </div>
+
+
+        <h2 class="section-title">
+
+            The days<br>
+            we kept.
+
+        </h2>
+
+
+        <p class="section-description">
+
+            Eighteen photographs.
+
+            Hundreds of memories.
+
+            And a story that is still being written.
+
+        </p>
+
+
+        <div class="memory-wall">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="memory">
+
+                <img
+                src="photo1.jpg"
+                alt="Memory 1">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 001
+                    </span>
+
+                    <h3>
+                        The beginning
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="memory">
+
+                <img
+                src="photo2.jpg"
+                alt="Memory 2">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 002
+                    </span>
+
+                    <h3>
+                        Some moments become memories
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="memory">
+
+                <img
+                src="photo3.jpg"
+                alt="Memory 3">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 003
+                    </span>
+
+                    <h3>
+                        Pure chaos
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="memory">
+
+                <img
+                src="photo4.jpg"
+                alt="Memory 4">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 004
+                    </span>
+
+                    <h3>
+                        No explanation needed
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="memory">
+
+                <img
+                src="photo5.jpg"
+                alt="Memory 5">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 005
+                    </span>
+
+                    <h3>
+                        A random day
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 6 -->
+
+            <div class="memory">
+
+                <img
+                src="photo6.jpg"
+                alt="Memory 6">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 006
+                    </span>
+
+                    <h3>
+                        Still laughing
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 7 -->
+
+            <div class="memory">
+
+                <img
+                src="photo7.jpg"
+                alt="Memory 7">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 007
+                    </span>
+
+                    <h3>
+                        A memory worth keeping
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 8 -->
+
+            <div class="memory">
+
+                <img
+                src="photo8.jpg"
+                alt="Memory 8">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 008
+                    </span>
+
+                    <h3>
+                        Another beautiful day
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 9 -->
+
+            <div class="memory">
+
+                <img
+                src="photo9.jpg"
+                alt="Memory 9">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 009
+                    </span>
+
+                    <h3>
+                        A moment worth keeping
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 10 -->
+
+            <div class="memory">
+
+                <img
+                src="photo10.jpg"
+                alt="Memory 10">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 010
+                    </span>
+
+                    <h3>
+                        We were happy here
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 11 -->
+
+            <div class="memory">
+
+                <img
+                src="photo11.jpg"
+                alt="Memory 11">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 011
+                    </span>
+
+                    <h3>
+                        One for the memories
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 12 -->
+
+            <div class="memory">
+
+                <img
+                src="photo12.jpg"
+                alt="Memory 12">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 012
+                    </span>
+
+                    <h3>
+                        our cuties
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 13 -->
+
+            <div class="memory">
+
+                <img
+                src="photo13.jpg"
+                alt="Memory 13">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 013
+                    </span>
+
+                    <h3>
+                        The little things
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 14 -->
+
+            <div class="memory">
+
+                <video
+                src="video14.mp4"
+                poster="video14-cover.jpg"
+                muted
+                loop
+                playsinline
+                autoplay
+                preload="metadata">
+                </video>
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 014
+                    </span>
+
+                    <h3>
+                        Still unforgettable
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 15 -->
+
+            <div class="memory">
+
+                <img
+                src="photo15.jpg"
+                alt="Memory 15">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 015
+                    </span>
+
+                    <h3>
+                        That smile
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 16 -->
+
+            <div class="memory">
+
+                <img
+                src="photo16.jpg"
+                alt="Memory 16">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 016
+                    </span>
+
+                    <h3>
+                        A day to remember
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 17 -->
+
+            <div class="memory">
+
+                <img
+                src="photo17.jpg"
+                alt="Memory 17">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 017
+                    </span>
+
+                    <h3>
+                        One more memory
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 18 -->
+
+            <div class="memory">
+
+                <img
+                src="photo18.jpg"
+                alt="Memory 18">
+
+                <div class="memory-info">
+
+                    <span>
+                        MEMORY 018
+                    </span>
+
+                    <h3>
+                        Forever saved
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- COUNTER -->
+
+        <div class="counter">
+
+
+            <div class="counter-box">
+
+                <div class="counter-number">
+                    ∞
+                </div>
+
+                <div class="counter-label">
+                    MEMORIES
+                </div>
+
+            </div>
+
+
+            <div class="counter-box">
+
+                <div class="counter-number">
+                    18
+                </div>
+
+                <div class="counter-label">
+                    PHOTOS
+                </div>
+
+            </div>
+
+
+            <div class="counter-box">
+
+                <div class="counter-number">
+                    01
+                </div>
+
+                <div class="counter-label">
+                    STORY
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIMELINE
+===================================================== -->
+
+<section
+class="section reveal"
+id="timeline">
+
+    <div class="section-inner">
+
+
+        <div class="kicker">
+            03 / THE TIMELINE
+        </div>
+
+
+        <h2 class="section-title">
+
+            Time keeps<br>
+            moving.
+
+        </h2>
+
+
+        <div class="timeline">
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-date">
+                    02 MAY 2024
+                </div>
+
+                <h3>
+                    Orientation Day
+                </h3>
+
+                <p>
+                    The day our story quietly began
+                    at Salt Brook Academy.
+                </p>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-date">
+                    MEMORY 002
+                </div>
+
+                <h3>
+                    The first memories
+                </h3>
+
+                <p>
+                    The days that slowly turned
+                    strangers into familiar faces.
+                </p>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-date">
+                    MEMORY 003
+                </div>
+
+                <h3>
+                    The unforgettable days
+                </h3>
+
+                <p>
+                     class 11 and 12 at salt brook were truly unforgettable days-filled with laughter,friendship,
+                     emotions and memories we can never replace. 
+                     those daysa are gone,but the moments we lived together will forever remain among the 
+                     most beautiful chaters of our lives.
+
+                
+                </p>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-date">
+                    TODAY
+                </div>
+
+                <h3>
+                    Still writing...
+                </h3>
+
+                <p>
+                    Our story doesn't have an ending yet.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECRET MEMORY
+===================================================== -->
+
+<section class="section reveal">
+
+    <div class="section-inner">
+
+
+        <div class="reveal-card">
+
+            <h3>
+                One more thing.
+            </h3>
+
+
+            <p>
+                Maybe there should be one memory
+                that isn't visible immediately.
+            </p>
+
+
+            <button
+            class="reveal-button"
+            onclick="showMemory()">
+
+                OPEN
+
+            </button>
+
+
+            <div
+            class="hidden-memory"
+            id="hiddenMemory">
+
+               Different colleges, different cities, different dreams we chase,
+                            Yet I still miss those familiar smiles and every familiar face.
+               We once shared the same classroom, the same laughter, the same days,
+                            Now distance has turned those moments into memories we quietly replay.
+               we miss each other who made ordinary days feel like home,
+                           And though life took us apart, in my heart, we all never be alone. ❤️ ❤️❤️❤️
+     
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER
+===================================================== -->
+
+<section
+class="section reveal"
+id="letter">
+
+    <div class="section-inner">
+
+
+        <div class="kicker">
+            04 / A MESSAGE
+        </div>
+
+
+        <h2 class="section-title">
+
+            For the<br>
+            future.
+
+        </h2>
+
+
+        <div class="letter">
+
+
+            <div class="letter-label">
+
+                OPEN WHEN YOU MISS THESE DAYS
+
+            </div>
+
+
+            <h3>
+
+                Remember this
+                version of us.
+
+            </h3>
+
+
+            <p>
+
+                There will be days when these
+                photographs feel like they belong
+                to another lifetime.
+
+            </p>
+
+
+            <p>
+
+                People will grow.
+
+                Dreams will change.
+
+                Places will change.
+
+                Everything around us will keep moving.
+
+            </p>
+
+
+            <p>
+                That's okay.
+            </p>
+
+
+            <p>
+
+                Because somewhere in this little
+                archive, these moments don't have
+                to change.
+
+            </p>
+
+
+            <p>
+
+                They can simply remain exactly
+                as they were.
+
+            </p>
+
+
+            <p>
+
+                So whenever life gets too fast,
+                come back here.
+
+            </p>
+
+
+            <p>
+
+                Look at a random photograph.
+
+                Read an old story.
+
+                Remember the ridiculous things.
+
+                Remember the good days.
+
+            </p>
+
+
+            <p>
+
+                And smile. ❤️
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final reveal">
+
+    <div>
+
+
+        <small>
+            THERE IS NO ENDING
+        </small>
+
+
+        <h2>
+
+            Until<br>
+
+            <span>
+                forever.
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            The next photograph hasn't been
+            taken yet.
+
+            The next story hasn't happened yet.
+
+            So this archive stays open.
+
+        </p>
+
+
+        <div class="infinity">
+            ∞
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    KEEP ADDING MEMORIES • 2024 → ∞
+
+</footer>
+
+
+<!-- =====================================================
+     PHOTO VIEWER
+===================================================== -->
+
+<div
+class="viewer"
+id="viewer">
+
+
+    <div
+    class="close"
+    onclick="closeViewer()">
+
+        ×
+
+    </div>
+
+
+    <img
+    id="viewerImg"
+    alt="Full memory">
+
+
+    <video
+    id="viewerVideo"
+    controls
+    playsinline
+    style="display:none">
+    </video>
+
+</div>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio
+id="music"
+loop>
+
+    <source
+    src="song.mp3"
+    type="audio/mpeg">
+
+</audio>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+const stars =
+document.getElementById("stars");
+
+
+for(let i = 0; i < 150; i++){
+
+    const star =
+    document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+    Math.random() * 100 + "%";
+
+    star.style.top =
+    Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+    Math.random() * 4 + "s";
+
+    star.style.animationDuration =
+    2 + Math.random() * 4 + "s";
+
+    stars.appendChild(star);
+
+}
+
+
+/* =====================================================
+   FALLING HEARTS
+===================================================== */
+
+const hearts =
+document.getElementById("hearts");
+
+
+function createHeart(){
+
+    const heart =
+    document.createElement("div");
+
+    heart.className = "heart";
+
+
+    const emojis = [
+        "❤️",
+        "💗",
+        "💖",
+        "💕",
+        "💓",
+        "💞"
+    ];
+
+
+    heart.innerText =
+    emojis[
+        Math.floor(
+            Math.random() * emojis.length
+        )
+    ];
+
+
+    heart.style.left =
+    Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+    (13 + Math.random() * 18) + "px";
+
+
+    heart.style.animationDuration =
+    (5 + Math.random() * 5) + "s";
+
+
+    hearts.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    },10000);
+
+}
+
+
+setInterval(createHeart,450);
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+const loader = document.getElementById("loader");
+const count = document.getElementById("count");
+const progress = document.getElementById("loaderProgress");
+
+const loadingDuration = 2000;
+const loadingStart = performance.now();
+
+function runMemoryLoader(now){
+    const elapsed = now - loadingStart;
+    const amount = Math.min(elapsed / loadingDuration, 1);
+    const value = Math.floor(amount * 100);
+
+    count.innerText = String(value).padStart(2,"0");
+    progress.style.width = value + "%";
+
+    if(amount < 1){
+        requestAnimationFrame(runMemoryLoader);
+    }else{
+        count.innerText = "100";
+        progress.style.width = "100%";
+
+        setTimeout(() => {
+            loader.style.opacity = "0";
+            loader.style.visibility = "hidden";
+            setTimeout(() => {
+                loader.style.display = "none";
+            },850);
+        },180);
+    }
+}
+
+requestAnimationFrame(runMemoryLoader);
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+
+function revealOnScroll(){
+
+    reveals.forEach(item => {
+
+        const top =
+        item.getBoundingClientRect().top;
+
+
+        if(top < window.innerHeight - 100){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
+
+revealOnScroll();
+
+
+/* =====================================================
+   PHOTO VIEWER
+===================================================== */
+
+let musicWasPlaying = false;
+
+
+const viewerImg =
+document.getElementById("viewerImg");
+
+const viewerVideo =
+document.getElementById("viewerVideo");
+
+
+const photos =
+document.querySelectorAll(".memory img, .memory video");
+
+
+photos.forEach(media => {
+
+    media.addEventListener(
+        "click",
+        () => {
+
+            const isVideo =
+            media.tagName === "VIDEO";
+
+
+            viewerImg.style.display =
+            isVideo ? "none" : "block";
+
+            viewerVideo.style.display =
+            isVideo ? "block" : "none";
+
+
+            if(isVideo){
+
+                viewerVideo.src =
+                media.currentSrc || media.src;
+
+
+                /* full sound in fullscreen */
+
+                viewerVideo.muted = false;
+
+                viewerVideo.volume = 1;
+
+
+                /* duck the background song */
+
+                const song =
+                document.getElementById("music");
+
+                if(song && !song.paused){
+
+                    song.pause();
+
+                    musicWasPlaying = true;
+
+                }
+
+
+                /* try with sound; if the browser
+                   blocks it, play silently instead */
+
+                const tryPlay =
+                viewerVideo.play();
+
+                if(tryPlay && tryPlay.catch){
+
+                    tryPlay.catch(() => {
+
+                        viewerVideo.muted = true;
+
+                        viewerVideo.play();
+
+                    });
+
+                }
+
+            } else {
+
+                viewerImg.src = media.src;
+
+            }
+
+
+            document.getElementById(
+                "viewer"
+            ).style.display = "flex";
+
+        }
+    );
+
+});
+
+
+function closeViewer(){
+
+    viewerVideo.pause();
+
+
+    /* bring the song back */
+
+    if(musicWasPlaying){
+
+        const song =
+        document.getElementById("music");
+
+        if(song){ song.play(); }
+
+        musicWasPlaying = false;
+
+    }
+
+    document.getElementById(
+        "viewer"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================================
+   SECRET MEMORY
+===================================================== */
+
+function showMemory(){
+
+    document.getElementById(
+        "hiddenMemory"
+    ).style.display = "block";
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const music =
+document.getElementById("music");
+
+const musicButton =
+document.getElementById("musicButton");
+
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+        .then(() => {
+
+            musicButton.innerText = "♫";
+
+        })
+        .catch(() => {
+
+            alert(
+                "Please make sure song.mp3 is inside your Memory-Archive folder."
+            );
+
+        });
+
+    }else{
+
+        music.pause();
+
+        musicButton.innerText = "♪";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE TO CLOSE PHOTO
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if(event.key === "Escape"){
+
+            closeViewer();
+
+        }
+
+    }
+);
+
+/* =========================================
+   MEMORY PASSWORD SYSTEM
+========================================= */
+
+const memoryPasswords = {
+
+    autr1105: true,
+    bhas1106: true,
+    jull1116: true,
+    neha1126: true,
+    niha1127: true,
+    nish1128: true,
+    prer1133: true,
+    sani1139: true,
+    anku1147: true,
+    atha1148: true,
+    deni1152: true,
+    gita1154: true,
+    hars1155: true,
+    kous1160: true
+
+};
+
+
+let wrongAttempts = 0;
+
+let lockedUntil = 0;
+
+const MAX_ATTEMPTS = 3;
+
+const LOCK_TIME = 3 * 60 * 1000;
+
+
+/* Check whether the user is currently locked */
+
+function checkLock(){
+
+    const now = Date.now();
+
+    if(now < lockedUntil){
+
+        return true;
+
+    }
+
+    return false;
+
+}
+
+
+/* Login function */
+
+function checkMemoryPassword(){
+
+    const passwordInput =
+        document.getElementById(
+            "memory-password"
+        );
+
+    const message =
+        document.getElementById(
+            "login-message"
+        );
+
+    const button =
+        document.getElementById(
+            "login-button"
+        );
+
+
+    /* Check 3-minute lock */
+
+    if(checkLock()){
+
+        updateLockCountdown();
+
+        return;
+
+    }
+
+
+    /* Make password lowercase */
+
+    const enteredPassword =
+        passwordInput.value
+        .trim()
+        .toLowerCase();
+
+
+    /* Empty password */
+
+    if(!enteredPassword){
+
+        message.innerText =
+            "Please enter your password.";
+
+        return;
+
+    }
+
+
+    /* Correct password */
+
+    if(
+        Object.prototype.hasOwnProperty.call(
+            memoryPasswords,
+            enteredPassword
+        )
+    ){
+
+        wrongAttempts = 0;
+
+        message.innerText =
+            "Welcome to the memories ❤️";
+
+
+        /* Hide login screen */
+
+        const loginScreen =
+            document.getElementById(
+                "login-screen"
+            );
+
+
+        loginScreen.style.opacity = "0";
+
+        loginScreen.style.visibility =
+            "hidden";
+
+
+        setTimeout(() => {
+
+            loginScreen.style.display =
+                "none";
+
+        },800);
+
+
+        return;
+
+    }
+
+
+    /* Wrong password */
+
+    wrongAttempts++;
+
+
+    if(wrongAttempts >= MAX_ATTEMPTS){
+
+        lockedUntil =
+            Date.now() + LOCK_TIME;
+
+        wrongAttempts = 0;
+
+        passwordInput.disabled = true;
+
+        button.disabled = true;
+
+        updateLockCountdown();
+
+        return;
+
+    }
+
+
+    const remaining =
+        MAX_ATTEMPTS - wrongAttempts;
+
+
+    message.innerText =
+        "Wrong password. " +
+        remaining +
+        " attempt(s) remaining.";
+
+
+    passwordInput.value = "";
+
+}
+
+
+/* =========================================
+   3-MINUTE LOCK COUNTDOWN
+========================================= */
+
+function updateLockCountdown(){
+
+    const message =
+        document.getElementById(
+            "login-message"
+        );
+
+    const button =
+        document.getElementById(
+            "login-button"
+        );
+
+    const passwordInput =
+        document.getElementById(
+            "memory-password"
+        );
+
+
+    const timer =
+        setInterval(() => {
+
+            const remaining =
+                lockedUntil - Date.now();
+
+
+            if(remaining <= 0){
+
+                clearInterval(timer);
+
+                passwordInput.disabled =
+                    false;
+
+                button.disabled =
+                    false;
+
+                message.innerText =
+                    "You can try again now.";
+
+                return;
+
+            }
+
+
+            const totalSeconds =
+                Math.ceil(
+                    remaining / 1000
+                );
+
+
+            const minutes =
+                Math.floor(
+                    totalSeconds / 60
+                );
+
+            const seconds =
+                totalSeconds % 60;
+
+
+            message.innerText =
+                "Too many attempts. " +
+                "Try again in " +
+                minutes +
+                ":" +
+                String(seconds).padStart(2,"0");
+
+
+        },1000);
+
+}
+document
+    .getElementById("memory-password")
+    .addEventListener("keydown", function(event){
+
+        if(event.key === "Enter"){
+
+            checkMemoryPassword();
+
+        }
+
+    });
+</script>
+
+
+</body>
+
+</html>
